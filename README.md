@@ -41,6 +41,40 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## Deployment using k8s
+
+### Prerequisite
+
+Minikube is used as a cluster for k8s.
+
+#### mac os
+
+```sh
+brew install kubectl
+brew install minikube
+
+minikube start
+```
+
+#### others
+
+- [minikube start](https://minikube.sigs.k8s.io/docs/start/)
+
+### Build Docker Image
+
+When building Docker, the Minikube context is used.
+
+```sh
+bash ./docker-build.sh
+```
+
+You can create a container.
+
+```sh
+docker rm -f nestjs-app
+docker run --name nestjs-app -d -p 3000:3000 nestjs-app
+```
+
 ## License
 
 This project is [MIT licensed](LICENSE).
