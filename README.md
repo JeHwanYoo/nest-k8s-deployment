@@ -89,7 +89,7 @@ kubectl apply -f k8s/service-node-port.yaml
 # 또는 kubectl apply -f k8s/service-load-balancer.yaml
 ```
 
-Now, you can expose the service.
+Now, you can retrieve the external access URL of the service
 
 ```sh
 minikube service nestjs-app-service --url
