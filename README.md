@@ -64,15 +64,19 @@ minikube start
 
 When building Docker, the Minikube context is used.
 
-```sh
-bash ./docker-build.sh
+```
+# Enable Minikube's Docker daemon
+eval "$(minikube docker-env)"
+
+# Build Docker Image
+docker build -t nestjs-app:latest .
 ```
 
-You can create a container.
+simply,
 
 ```sh
-docker rm -f nestjs-app
-docker run --name nestjs-app -d -p 3000:3000 nestjs-app
+# in repository
+bash ./docker-build.sh
 ```
 
 ### Deploy using the Minikube
