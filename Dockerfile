@@ -1,4 +1,4 @@
-FROM node:latest as base
+FROM node:current-alpine as base
 
 # use pnpm
 RUN corepack enable

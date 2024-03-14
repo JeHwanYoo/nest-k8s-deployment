@@ -75,6 +75,36 @@ docker rm -f nestjs-app
 docker run --name nestjs-app -d -p 3000:3000 nestjs-app
 ```
 
+### Deploy using the Minikube
+
+You can apply a deployment and a service.
+
+```sh
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+```
+
+Now, you can expose the service.
+
+```sh
+minikube service nestjs-app-service --url
+```
+
+Finally, you can delete the service and the deployment
+
+```sh
+kubectl delete service nestjs-app-service
+kubectl delete deployment nestjs-app-deployment
+```
+
+### Check the status of the cluster
+
+```sh
+minikube dashboard --url
+```
+
+![Dashboard](assets/Kubernetes%20Dashboard.jpeg)
+
 ## License
 
 This project is [MIT licensed](LICENSE).
