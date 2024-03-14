@@ -81,6 +81,24 @@ bash ./docker-build.sh
 
 ### Deploy using the Minikube
 
+#### Using Simple Pod
+
+You can apply a simple pod.
+
+```sh
+kubectl apply -f k8s/simple-pod.yml
+```
+
+You can port-forward for the pod.
+
+```sh
+kubectl port-forward pod/simple-and-old-way 8080:3000
+```
+
+http://localhost:8000
+
+#### Using Deployment & Service
+
 You can apply a deployment and a service.
 
 ```sh

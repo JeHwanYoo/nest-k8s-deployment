@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-and-old-way
+  namespace: default
+spec:
+  containers:
+    - name: simple-and-old-way
+      image: nestjs-app:latest
+      imagePullPolicy: Never
+      command: [ "node" ]
+      args: [ "dist/main" ]
+      ports:
+        - containerPort: 3000
