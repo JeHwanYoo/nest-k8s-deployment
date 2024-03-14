@@ -81,7 +81,8 @@ You can apply a deployment and a service.
 
 ```sh
 kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/service-node-port.yaml
+# 또는 kubectl apply -f k8s/service-load-balancer.yaml
 ```
 
 Now, you can expose the service.
@@ -104,6 +105,29 @@ minikube dashboard --url
 ```
 
 ![Dashboard](assets/Kubernetes%20Dashboard.jpeg)
+
+## LoadBalancer Service in Local
+
+When a `LoadBalancer` service type is displayed as `Pending` status, it typically indicates that the Kubernetes cluster
+environment has not completed the provisioning of the actual load balancer resource. In cloud environments (e.g., AWS,
+Google Cloud, Azure, etc.), when you create a `LoadBalancer` service, the cloud provider automatically allocates an
+external load balancer and associates an external IP address with the service. Once this process is completed, the
+service status changes from `Pending` to a state where an external IP is assigned.
+
+However, **in local environments**, such as when using Minikube, provisioning a real cloud provider's load balancer is
+not possible. Tools like Minikube are designed for local development and cannot create load balancers in the same manner
+as real cloud infrastructure. Therefore, even though you might use the `LoadBalancer` service type, an actual external
+load balancer is not created, and the service status remains `Pending`.
+
+**But this doesn't mean the service won't work in a local environment.** Minikube provides a feature through
+the `minikube tunnel` command that enables access to `LoadBalancer` services. The `minikube tunnel` command facilitates
+traffic routing for LoadBalancer type services on the local machine and, if necessary, assigns a virtual external IP
+address to simulate load balancer functionality. This allows developers to test and use `LoadBalancer` services in a
+local environment.
+
+In summary, it is normal for a `LoadBalancer` service to be marked as `Pending` in a local environment. This status
+indicates that an actual load balancer resource has not been provisioned, but tools like `minikube tunnel` enable local
+access to and testing of the service.
 
 ## License
 
