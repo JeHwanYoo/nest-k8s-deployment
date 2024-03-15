@@ -97,12 +97,45 @@ kubectl port-forward pod/simple-and-old-way 8080:3000
 
 http://localhost:8000
 
-#### Using Deployment & Service
+#### Delete Pod
+
+you can delete the pod,
+
+```sh
+kubectl delete pod simple-and-old-way
+```
+
+#### Using Deployment
 
 You can apply a deployment and a service.
 
 ```sh
 kubectl apply -f k8s/deployment.yaml
+```
+
+You can log the pods.
+
+```sh
+kubectl get pods
+```
+
+You can port-forward for the pod.
+
+```
+NAME                                    READY   STATUS    RESTARTS      AGE
+nestjs-app-deployment-c7d594bb6-9kkmr   1/1     Running   2 (15h ago)   18h
+nestjs-app-deployment-c7d594bb6-d95sp   1/1     Running   2 (15h ago)   18h
+```
+
+```sh
+kubectl port-forward pod/[pod-name] 8080:3000
+```
+
+http://localhost:8000
+
+#### Using service
+
+```sh
 kubectl apply -f k8s/service-node-port.yaml
 # 또는 kubectl apply -f k8s/service-load-balancer.yaml
 ```
@@ -113,7 +146,9 @@ Now, you can retrieve the external access URL of the service
 minikube service nestjs-app-service --url
 ```
 
-Finally, you can delete the service and the deployment
+#### Delete Deployment and Service
+
+you can delete the service and the deployment
 
 ```sh
 kubectl delete service nestjs-app-service
